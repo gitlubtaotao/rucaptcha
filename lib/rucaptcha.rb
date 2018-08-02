@@ -50,19 +50,6 @@ module RuCaptcha
       store_name = cache_store.is_a?(Array) ? cache_store.first : cache_store
       if [:memory_store, :null_store, :file_store].include?(store_name)
         RuCaptcha.config.cache_store = [:file_store, Rails.root.join('tmp/cache/rucaptcha/session')]
-
-        puts "
-
-  RuCaptcha's cache_store requirements are stored across processes and machines,
-  such as :mem_cache_store, :redis_store, or other distributed storage.
-  But your current set is #{cache_store}, it has changed to :file_store for working.
-  NOTE: :file_store is still not a good way, it only works with single server case.
-
-  Please make config file `config/initializers/rucaptcha.rb` to setup `cache_store`.
-  More infomation please read GitHub RuCaptcha README file.
-  https://github.com/huacnlee/rucaptcha
-
-"
       end
     end
   end
